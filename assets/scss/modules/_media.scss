@@ -1,0 +1,66 @@
+@mixin mediaQuery($minWidth) {
+  @media only screen and (min-width: $minWidth) {
+    @content
+  }
+}
+
+@mixin XXS {
+  @include mediaQuery(375px) { // iPhone 6,7,8,SE-2
+    @content
+  }
+}
+
+@mixin XS {
+  @include mediaQuery(414px) { // iPhone 6,7,8 -- Plus
+    @content
+  }
+}
+
+@mixin S {
+  @include mediaQuery(567px) { // iPhone 5,SE --Horizontal
+    @content
+  }
+}
+
+@mixin TabletSmall {
+  @include mediaQuery(640px) {
+    @content
+  }
+}
+
+@mixin XXM {
+  @include mediaQuery(768px) { // iPad Mini
+    @content
+  }
+}
+
+@mixin XM {
+  @include mediaQuery(1024px) { // iPad Mini --Horizontal
+    @content
+  }
+}
+
+@mixin M {
+  @include mediaQuery(1152px) { // MacBook 12
+    @content
+  }
+}
+
+
+@mixin L {
+  @include mediaQuery(1280px) { // MacBook Pro 13
+    @content
+  }
+}
+
+@mixin XL {
+  @include mediaQuery(1366px) { // Laptop default
+    @content
+  }
+}
+
+@mixin XXL {
+  @include mediaQuery(1440px) { // MacBook Pro 15
+    @content
+  }
+}
