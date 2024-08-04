@@ -58,7 +58,7 @@ const authorNameById = (id) => {
 
 const isViewed = (articleId) => {
   viewedList.value = getArticlesViewed();
-  return viewedList.value.includes(articleId)
+  return viewedList.value.split(',').map(string => +string).includes(articleId)
 };
 </script>
 

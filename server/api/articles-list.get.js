@@ -13,8 +13,9 @@ export default defineEventHandler(async (event) => {
 
             if (query?.viewed && data) {
                 const filteredData = [];
+                const viewedList = query?.viewed.split(',').map(string => +string)
                 data.forEach(article => {
-                    if (query?.viewed.includes(article.id)) {
+                    if (viewedList.includes(article.id)) {
                         filteredData.push(article)
                     }
                 })
