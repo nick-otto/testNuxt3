@@ -6,13 +6,7 @@ export default function useArticlesList() {
             articlesList.value = await $fetch(`/api/articles-list`, {
                 params
             })
-            if (params.author) {
-                articlesList.value = articlesList.value.filter(article => Number(article.userId) === Number(params.author))
-            } else if (params.article) {
-                articlesList.value = articlesList.value.filter(article => Number(article.id) === Number(params.article))
-            } else {
-                return articlesList.value
-            }
+            return articlesList.value
         } catch (error) {
             console.log('getArticlesList error', error)
         }
