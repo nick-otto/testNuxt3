@@ -1,21 +1,42 @@
 <template>
   <div class="card-list">
     <Card
-        v-if="articlesList?.length"
+        v-if="articlesList?.length && authorsList?.length"
         :list="articlesList"
+        :authorsList="authorsList"
     />
   </div>
 </template>
 
 <script setup>
 import useArticlesList from "~/hooks/getArticlesList";
+import useAuthorsList from "~/hooks/getAuthorsList";
 
 const {
   articlesList,
   getArticlesList
 } = useArticlesList()
 
-onMounted(() => getArticlesList())
+const {
+  authorsList,
+  getAuthorsList
+} = useAuthorsList()
+
+const route = useRoute();
+
+watch(
+    () => route.query.author,
+    () => getArticlesList(
+      {
+        author: route.query.author
+      }
+    )
+);
+
+onMounted(() => {
+  getAuthorsList();
+  getArticlesList();
+})
 </script>
 
 <style lang="scss" scoped>

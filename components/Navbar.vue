@@ -1,6 +1,9 @@
 <template>
   <ul>
-    <li v-for="menu in navbarList" :key="menu.name">
+    <li
+        v-for="menu in navbarList"
+        :key="menu.name"
+    >
       <nuxt-link :to="menu.link">
         {{ menu.name }}
       </nuxt-link>
