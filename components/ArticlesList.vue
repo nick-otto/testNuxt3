@@ -25,17 +25,21 @@ const {
 const route = useRoute();
 
 watch(
-    () => route.query.author,
+    () => route.query,
     () => getArticlesList(
       {
-        author: route.query.author
+        author: route.query.author,
+        viewed: route.query.viewed
       }
     )
 );
 
 onMounted(() => {
   getAuthorsList();
-  getArticlesList();
+  getArticlesList({
+    viewed: route?.query?.viewed,
+    author: route?.query?.author
+  });
 })
 </script>
 

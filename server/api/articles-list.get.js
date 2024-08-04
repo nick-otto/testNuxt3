@@ -11,6 +11,16 @@ export default defineEventHandler(async (event) => {
                 return data = data.filter(article => Number(article.id) === Number(query.article))
             }
 
+            if (query?.viewed && data) {
+                const filteredData = [];
+                data.forEach(article => {
+                    if (query?.viewed.includes(article.id)) {
+                        filteredData.push(article)
+                    }
+                })
+                return filteredData
+            }
+
             return data
             
         } catch (error) {
