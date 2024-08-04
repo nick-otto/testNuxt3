@@ -30,7 +30,6 @@ import {useArticlesViewedStore} from "~/stores/articlesViewed";
 const props = defineProps(['list', 'authorsList'])
 const list = computed(() => props.list)
 const authorsList = computed(() => props.authorsList)
-const route = useRoute();
 
 const {
   setArticlesViewed
