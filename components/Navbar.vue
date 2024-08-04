@@ -1,15 +1,27 @@
 <template>
-  <ul>
-    <li
-        v-for="menu in navbarList"
-        :key="menu.name"
-    >
-      <nuxt-link :to="menu.link">
-        {{ menu.name }}
-      </nuxt-link>
-    </li>
+  <template v-if="!viewedIdList">
+    Loading...
+  </template>
+  <template v-else>
+    <ul>
+      <li>
+        <nuxt-link to="/">
+          Главная
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link :to="`/?viewed=${viewedIdList}`" @focus="getViewedIds">
+          Просмотренные
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/authors-list">
+          Авторы
+        </nuxt-link>
+      </li>
+    </ul>
+  </template>
 
-  </ul>
 </template>
 
 <script setup>
@@ -21,23 +33,12 @@ const {
 
 const viewedIdList = ref();
 
-const navbarList = [
-  {
-    name: 'Главная',
-    link: '/'
-  },
-  {
-    name: 'Просмотренные',
-    link: `/?viewed=${viewedIdList}`
-  },
-  {
-    name: 'Авторы',
-    link: '/authors-list'
-  }
-]
-
-onBeforeMount(() => {
+const getViewedIds = () => {
   viewedIdList.value = getArticlesViewed()
+};
+
+onMounted(() => {
+  getViewedIds()
 })
 </script>
 
