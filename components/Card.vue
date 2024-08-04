@@ -21,6 +21,13 @@
       {{ authorNameById(card.userId) }}
     </nuxt-link>
 
+    <h6
+        v-if="isViewed(card.id)"
+        class="card__footer"
+    >
+      Просмотрено
+    </h6>
+
   </div>
 </template>
 
@@ -35,6 +42,12 @@ const {
   setArticlesViewed
 } = useArticlesViewedStore();
 
+const {
+  getArticlesViewed
+} = useArticlesViewedStore();
+
+const viewedList = ref();
+
 const addIdToViewed = (id) => {
   setArticlesViewed(id)
 };
@@ -42,11 +55,20 @@ const addIdToViewed = (id) => {
 const authorNameById = (id) => {
   return authorsList?.value.filter(author => author.id === id)[0].name
 };
+
+const isViewed = (articleId) => {
+  viewedList.value = getArticlesViewed();
+  return viewedList.value.includes(articleId)
+};
 </script>
 
-<style>
+<style scoped>
 a {
   color: #0e1217;
+
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 p {

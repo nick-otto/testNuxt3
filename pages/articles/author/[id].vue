@@ -51,6 +51,13 @@ onMounted(() => {
 p {
   text-align: center;
   margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+a {
+  &:hover {
+    opacity: 0.7;
+  }
 }
 .card-list {
   display: flex;
